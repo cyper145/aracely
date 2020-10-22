@@ -52,10 +52,12 @@ class _ActoPageState extends State<ActoPage> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        title: Text('ACTO',
-            style: TextStyle(
-              color: Colors.white,
-            )),
+        title: FittedBox(
+          child: Text('ACTO / CONDICIÓN SUB ESTANDAR',
+              style: TextStyle(
+                color: Colors.white,
+              )),
+        ),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.photo_size_select_actual, color: Colors.white),
@@ -101,7 +103,7 @@ class _ActoPageState extends State<ActoPage> {
       initialValue: nus.codigo,
       textCapitalization: TextCapitalization.sentences,
       decoration: InputDecoration(
-        labelText: 'Acto',
+        labelText: 'Acto / Condicion',
       ),
       onSaved: (value) => nus.codigo = value,
       validator: (value) {

@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:nusaramina/src/models/acto_model.dart';
+import 'package:nusaramina/src/models/correctivo_model.dart';
 import 'package:nusaramina/src/models/nus_model.dart';
 import 'package:nusaramina/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:http/http.dart' as http;
@@ -14,12 +16,29 @@ class NusProvider {
   Future<bool> crearNus(Nus nus) async {
     //final url = '$_url/nus.json?auth=${ _prefs.token }';
     final url = '$_url/nus.json';
-    final resp = await http.post(url, body: nusToJson(nus));
+    Nus nuscrear = Nus();
+    Acto acto1 = new Acto();
+    acto1.codigo = "nose";
+    acto1.image = "darte";
+    acto1.name = "la locura";
+    acto1.nroPersonas = 112;
+    acto1.severidad = "0.03";
+    acto1.tipo = "A1";
+    List<Correctivo> correctivos = new List();
+    acto1.correctivos = correctivos;
+    List<Acto> actos = new List();
+    actos.add(acto1);
+    nuscrear.actos = actos;
+    nuscrear.codigo = "Nus00001";
+    List<Concidencias> con = List();
+    nuscrear.concidencias = con;
+    nuscrear.documentoId = "15412adsadas";
+    nuscrear.resumenActo = "15.00";
+    nuscrear.resumenCorrectivo = "16.20";
 
+    final resp = await http.post(url, body: nusToJson(nuscrear));
     final decodedData = json.decode(resp.body);
-
     print(decodedData);
-
     return true;
   }
 

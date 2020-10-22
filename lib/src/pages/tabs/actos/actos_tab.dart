@@ -10,10 +10,10 @@ import 'package:nusaramina/src/utils/utils.dart' as utils;
 
 class Actostab extends StatefulWidget {
   @override
-  _ActostabeState createState() => _ActostabeState();
+  _ActostabState createState() => _ActostabState();
 }
 
-class _ActostabeState extends State<Actostab> {
+class _ActostabState extends State<Actostab> {
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 

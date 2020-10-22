@@ -11,7 +11,6 @@ class NusBloc {
   final _nusPageController = new BehaviorSubject<List<Nus>>();
   final _actoController = new BehaviorSubject<List<Acto>>();
   final _cargandoController = new BehaviorSubject<bool>();
-
   final _nusProvider = new NusProvider();
 
   Stream<List<Nus>> get nusStream => _nusController.stream;

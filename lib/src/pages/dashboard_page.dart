@@ -14,7 +14,6 @@ class DashboardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    nusBloc = Provider.nusBloc(context);
     return Scaffold(
         body: Stack(
           children: <Widget>[
@@ -154,49 +153,32 @@ class DashboardPage extends StatelessWidget {
   Widget _crearBotonRedondeado(BuildContext context, Color color,
       IconData icono, String texto, String router) {
     //siempre cargar  todo los nus en general
-    return StreamBuilder(
-        stream: nusBloc.nusStream,
-        builder: (context, AsyncSnapshot<List<Nus>> snapshot) {
-          if (snapshot.hasData) {
-            // lista de todos los nus
-            final lisNus = snapshot.data;
-
-            Nus data;
-            if (router == "nus") {
-              data = lisNus[0]; // escogerel primero
-            }
-
-            return GestureDetector(
-              onTap: () => Navigator.pushReplacementNamed(context, router,
-                  arguments: data == null ? lisNus : data),
-              child: Container(
-                height: 150.0,
-                margin: EdgeInsets.all(10.0),
-                decoration: BoxDecoration(
-                    color: Color.fromRGBO(83, 81, 131, 0.7),
-                    borderRadius: BorderRadius.circular(20.0)),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    SizedBox(height: 5.0),
-                    CircleAvatar(
-                      backgroundColor: color,
-                      radius: 40.0,
-                      child: Icon(icono, color: Colors.white, size: 50.0),
-                    ),
-                    Text(texto,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold)),
-                    SizedBox(height: 5.0)
-                  ],
-                ),
-              ),
-            );
-          } else {
-            return Center(child: CircularProgressIndicator());
-          }
-        });
+    return GestureDetector(
+      onTap: () => Navigator.pushNamed(context, router),
+      child: Container(
+        height: 150.0,
+        margin: EdgeInsets.all(10.0),
+        decoration: BoxDecoration(
+            color: Color.fromRGBO(83, 81, 131, 0.7),
+            borderRadius: BorderRadius.circular(20.0)),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            SizedBox(height: 5.0),
+            CircleAvatar(
+              backgroundColor: color,
+              radius: 40.0,
+              child: Icon(icono, color: Colors.white, size: 50.0),
+            ),
+            Text(texto,
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold)),
+            SizedBox(height: 5.0)
+          ],
+        ),
+      ),
+    );
   }
 }
